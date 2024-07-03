@@ -8,10 +8,18 @@ router.post('/register', async (req, res) => {
     const auth = getAuth(firebaseApp);
   
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      res.status(201).send(`User registered with email: ${userCredential.user.email}`);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const response = {
+            message: 'success'
+        }
+
+        res.status(201).json(response);
     } catch (error) {
-      res.status(400).send(`Error: ${error.message}`);
+        const response = {
+          error: error.message.replace("Firebase: ", "")
+        }
+
+        res.status(400).send(response);
     }
 });
 

@@ -9,15 +9,18 @@ router.post('/login', async (req, res) => {
   
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-
-        let response = {
+        const response = {
             id: userCredential.user.uid,
             refresh_token: userCredential.user.stsTokenManager.accessToken
         }
 
-        res.json(response);
+        res.status(200).json(response);
     } catch (error) {
-        res.status(400).send(`Error: ${error.message}`);
+        const response = {
+            error: error.message.replace("Firebase: ", "")
+        }
+
+        res.status(400).json(response);
     }
 });
 
