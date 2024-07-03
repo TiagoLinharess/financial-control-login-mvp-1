@@ -7,7 +7,7 @@ globalThis.fetch = fetch;
 
 const registerRoute = require('./Controllers/RegisterController');
 const loginRoute = require('./Controllers/LoginController');
-const sessionRoute = require('./Controllers/VerifySession');
+const sessionRoute = require('./Controllers/VerifySessionController');
 
 const { initializeApp } = require('firebase/app');
 const firebaseConfig = {
