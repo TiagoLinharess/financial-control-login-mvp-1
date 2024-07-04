@@ -30,14 +30,20 @@ npm start
 
 ### Executando com Docker
 
+Criação da rede (Necessária para se comunicar com as outras apis)
+
+```bash
+docker network create financial-control-network 
+```
+
 Criação da imagem:
 
 ```bash
-docker build -t financial-control-login-mvp-1 . 
+docker build -t financial-control-login-mvp-1 .
 ```
 
 Execução da imagem:
 
 ```bash
-docker run -p 3000:3000 financial-control-login-mvp-1
+docker run -d --name financial-control-login-mvp-1 --network financial-control-network -p 3000:3000 financial-control-login-mvp-1
 ```
